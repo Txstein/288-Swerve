@@ -27,11 +27,19 @@ public class SwerveDriveWheel {
         double currentAngle = (AngleSensor.getVoltage() / 3.3) * 360 * -1; // Flip direction so clockwise is positive (with zero being forward)
         double angleError = targetAngle - currentAngle;
         // Compute the shortest path rather than the naive difference.
-        while (angleError < 0) { angleError += 360; }
+        while (angleError < 0) {
+            angleError += 360;
+        }
         angleError = ((angleError + 180) % 360) - 180;
         // If driving the wheel backwards would be faster than spinning it around, do that.
-        if (angleError > 90) { angleError -= 180; motorPower *= -1; }
-        if (angleError < -90) { angleError += 180; motorPower *= -1; }
+        if (angleError > 90) {
+            angleError -= 180;
+            motorPower *= -1;
+        }
+        if (angleError < -90) {
+            angleError += 180;
+            motorPower *= -1;
+        }
 
         // Drive the servo. Do nothing if the angle error is small enough.
         double servoPower = angleError * ERROR_TO_SERVO_POWER;

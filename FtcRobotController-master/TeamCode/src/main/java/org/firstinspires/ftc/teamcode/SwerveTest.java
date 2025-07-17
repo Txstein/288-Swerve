@@ -76,7 +76,8 @@ public class SwerveTest extends LinearOpMode {
 
             telemetry.update();
         }
-        }
+    }
+
     double inputScaling(double x) {
         double sign = Math.signum(x);
         double magnitude = Math.abs(x);

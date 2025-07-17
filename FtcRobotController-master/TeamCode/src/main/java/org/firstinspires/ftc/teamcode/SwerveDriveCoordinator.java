@@ -6,13 +6,14 @@ public class SwerveDriveCoordinator {
 
     public SwerveDriveCoordinator(
             org.firstinspires.ftc.robotcore.external.Telemetry telemetry,
-            SwerveDriveWheel lfWheel, SwerveDriveWheel lrWheel, SwerveDriveWheel rfWheel, SwerveDriveWheel rrWheel){
+            SwerveDriveWheel lfWheel, SwerveDriveWheel lrWheel, SwerveDriveWheel rfWheel, SwerveDriveWheel rrWheel) {
         Telemetry = telemetry;
         LFWheel = lfWheel;
         LRWheel = lrWheel;
         RFWheel = rfWheel;
         RRWheel = rrWheel;
     }
+
     public void drive(double vx, double vy, double vr) {
         Telemetry.addData("Velocity X", vx);
         Telemetry.addData("Velocity Y", vy);
@@ -23,22 +24,22 @@ public class SwerveDriveCoordinator {
         // Note: Inverting the Y axis provided to atan2 makes it positive in the
         // clockwise rather than counterclockwise direction.
         double lfDir = 90 + Math.atan2(-lfY, lfX) * 180 / Math.PI;
-        double lfPow = Math.sqrt(lfX*lfX + lfY*lfY);
+        double lfPow = Math.sqrt(lfX * lfX + lfY * lfY);
 
         double lrX = vx - vr;
         double lrY = vy + vr;
         double lrDir = 90 + Math.atan2(-lrY, lrX) * 180 / Math.PI;
-        double lrPow = Math.sqrt(lrX*lrX + lrY*lrY);
+        double lrPow = Math.sqrt(lrX * lrX + lrY * lrY);
 
         double rfX = vx + vr;
         double rfY = vy - vr;
         double rfDir = 90 + Math.atan2(-rfY, rfX) * 180 / Math.PI;
-        double rfPow = Math.sqrt(rfX*rfX + rfY*rfY);
+        double rfPow = Math.sqrt(rfX * rfX + rfY * rfY);
 
         double rrX = vx - vr;
         double rrY = vy - vr;
         double rrDir = 90 + Math.atan2(-rrY, rrX) * 180 / Math.PI;
-        double rrPow = Math.sqrt(rrX*rrX + rrY*rrY);
+        double rrPow = Math.sqrt(rrX * rrX + rrY * rrY);
 
         // Scale motor powers so the fastest one is 1.0 at most. We can
         // use a simple maximum over the power values because they are
